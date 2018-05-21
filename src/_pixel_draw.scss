@@ -36,7 +36,13 @@ $pixel-size: 4px;
     &--heart {
         @include style-item($heart, $pixel-size);
     }
-    &--tim {
-        @include style-item($tim, $pixel-size);
+    &--beargguy-yellow {
+        @include style-item($beargguy-yellow, $pixel-size);
+    }
+    &--beargguy-blue {
+        @include style-item($beargguy-blue, $pixel-size);
+    }
+    &--beargguy-red {
+        @include style-item($beargguy-red, $pixel-size);
     }
 }

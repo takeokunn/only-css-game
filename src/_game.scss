@@ -29,13 +29,14 @@ $game-length: 100s;
         > .click--area {
             position: absolute;
             display: block;
-            top: 60px;
-            left: 60px;
+            top: 55px;
+            left: 50px;
             cursor: -webkit-grab;
             z-index: 3;
-            @extend .pixelized--heart;
             margin-top: -5px;
             margin-left: -5px;
+            -webkit-appearance: none !important;
+            @extend .pixelized--heart;
         }
         > .shield {
             position: absolute;
