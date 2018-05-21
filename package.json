@@ -1,0 +1,18 @@
+{
+  "name": "css-game",
+  "version": "1.0.0",
+  "description": "only css game",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm run compress && npm run watch & npm run dev-server",
+    "dev-server": "superstatic ./public",
+    "compress": "node-sass src/index.scss --output public/",
+    "watch": "node-sass src/index.scss -w --output public/"
+  },
+  "author": "takeokunn",
+  "license": "MIT",
+  "devDependencies": {
+    "node-sass": "^4.9.0",
+    "superstatic": "^5.0.1"
+  }
+}
