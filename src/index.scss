@@ -1,5 +1,12 @@
-p {
-	color: red;
-    font-size: 19px;
-    font-weight: bold;
-}
+/* bootstrap */
+@import 'bootstrap';
+@import 'color';
+@import 'animation';
+
+/* pixel art */
+@import 'assets/heart';
+@import 'assets/character';
+
+/* game */
+@import 'pixel_draw';
+@import 'game';

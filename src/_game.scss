@@ -1,0 +1,111 @@
+$game-length: 100s;
+
+.game--title {
+    text-align: center;
+    > p {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 0;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+}
+
+.game--area {
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+    grid-gap: 20px;
+    width: 70vw;
+    height: 80vh;
+    margin: 0 auto;
+    max-width: 800px;
+    padding-top: 10px;
+    > li {
+        position: relative;
+        background: linear-gradient(rgba(255,210,0,.9), rgba(49, 196, 59, .9) 50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        > .click--area {
+            position: absolute;
+            display: block;
+            top: 60px;
+            left: 60px;
+            cursor: -webkit-grab;
+            z-index: 3;
+            @extend .pixelized--heart;
+            margin-top: -5px;
+            margin-left: -5px;
+        }
+        > .shield {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60%;
+            background-color: navy;
+            z-index: 4;
+        }
+    }
+}
+
+.game--score {
+    text-align: center;
+    > p {
+        font-weight: bold;
+        font-size: 18px;
+    }
+}
+
+.game--stopper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: cyan;
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    transform: translateY(-100vh);
+    animation: stopper 0.5s forwards;
+    animation-delay: $game-length;
+    > h2 {
+        font-size: 24px;
+    }
+    > p {
+        font-size: 18px;
+        font-weight: bold;
+    }
+}
+
+/* for animation */
+@for $loop from 1 through 9 {
+    $speed: random() * 1.5 + 's';
+    li:nth-child(#{$loop}) {
+        .character, .click--area {
+            animation: move #{$speed} infinite alternate forwards;
+        }
+    }
+}
+
+/* for score */
+.game--area {
+    counter-reset: game;
+}
+
+.click--area:checked {
+    counter-increment: game;
+    animation: none !important;
+    pointer-events: none;
+    + .character {
+        animation: none !important;
+        filter: grayscale(100%);
+    }
+}
+
+.game--score > p::after {
+    content: counter(game);
+}
+
+.game--stopper > p::after {
+    content: counter(game);
+}

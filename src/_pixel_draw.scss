@@ -1,0 +1,42 @@
+$pixel-size: 4px;
+
+@function pixelize($matrix, $size) {
+    $l: length($matrix);
+    $sh: '';
+    @for $row from 1 through $l {
+        $row-num: nth($matrix, $row);
+        @for $col from 1 through length($row-num) {
+            $dot: nth($row-num, $col);
+            $sh:  $sh + ($col * $size) + ' ' + ($row * $size) + ' ' + map-get($colors, $dot);
+            @if not ($col == length($row-num) and $row == $l) {
+                $sh: $sh + ',';
+            }
+        }
+    }
+    @return unquote($sh);
+}
+
+// Mixin to style each item
+@mixin style-item($matrix, $size) {
+    position: relative;
+    width:($size * length(nth($matrix, 1)));
+    height:($size * length($matrix));
+    &:after {
+        content: '';
+        position: absolute;
+        top: (-$size);
+        left: (-$size);
+        width: $size;
+        height: $size;
+        box-shadow: pixelize($matrix,$size);
+    }
+}
+
+.pixelized {
+    &--heart {
+        @include style-item($heart, $pixel-size);
+    }
+    &--tim {
+        @include style-item($tim, $pixel-size);
+    }
+}
